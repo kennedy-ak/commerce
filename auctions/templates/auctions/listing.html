@@ -1,0 +1,23 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+ <h2> <b>Listing:{{ auction.product_name}}</b></h2>
+
+{% comment %} {% if auction.product_name in all_watch %}
+
+{{msg}}
+
+{% endif %} {% endcomment %}
+
+<form action="" method="POST">
+    {% csrf_token %}
+    <input type="submit" value="Watchlist" name="submit" id="">
+</form>
+<br>
+<br>
+    <img src=" {{auction.product_image.url}}" width="500">
+
+<h2></h2>
+<p>{{auction.product_description }}</p>
+<h5> <b>${{auction.startin_bid}}.00</b></h5>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h2>Active Listings</h2>
+
+    TODO
+
+    {% for auction in auctions  %}
+    
+
+    <div>
+
+<table>
+
+    <tbody>
+        <tr>
+            <td>
+                  {% if  auction.product_image%}
+        <img src=" {{auction.product_image}}" width="500">
+        {%endif%}
+            </td>
+            <td style="border: 1px solid #dddddd; text-align: left; padding: 12px;"> <h3><b> <a href="{% url 'listing' auction.id%}">{{auction.product_name}}</a></b></h3>
+      
+        
+        <p>Price: ${{auction.startin_bid }}.00</p>
+        <p>Created: {{auction.date_created}}</p>
+    </div></td>
+         
+        </tr>
+        <tr>
+        
+          
+     
+    </tbody>
+</table>
+        
+ 
+    <hr>
+
+
+    {% endfor %}
+
+
+
+{% endblock %}
