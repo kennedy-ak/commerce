@@ -3,11 +3,10 @@
 {% block body %}
  <h2> <b>Listing:{{ auction.product_name}}</b></h2>
 
-{% comment %} {% if auction.product_name in all_watch %}
 
-{{msg}}
+<h5>{{msg}}</h5>
 
-{% endif %} {% endcomment %}
+
 
 <form action="" method="POST">
     {% csrf_token %}

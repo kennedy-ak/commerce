@@ -36,9 +36,9 @@ class Comments(models.Model):
 class Watchlist(models.Model):
     id = models.BigAutoField(primary_key=True)
     user = models.ForeignKey(User,on_delete=models.CASCADE, blank=True,null=True)
-    name = models.ManyToManyField(AuctionList,blank=True,null=True)
-    hellp
+    name = models.ForeignKey(AuctionList, null=True, blank=True, on_delete=models.CASCADE)
+    
 
     def __str__(self):
-        return self.user.username
+        return f"{self.name}"
     

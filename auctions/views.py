@@ -104,19 +104,32 @@ def create_listing(request):
 
 def listing(request, id):
     auction = get_object_or_404(AuctionList, id=id)
-    # all_watch = Watchlist.objects.filter(user=request.user, products=auction).exists()
+    print(auction.product_name)
+    all_watch =Watchlist.objects.values_list('name', flat=True)
+    print(all_watch)
+    msg =None
+    if request.method == "POST":
+        name = auction.product_name
+        if name in all_watch:
 
-    # if request.method == "POST":
-    #     watchlist, created = Watchlist.objects.get_or_create(user=request.user)
+            Watchlist.objects.filter(name=name).delete()
+            
+
+        else:
+            msg = "added to watch list"
+            Watchlist.objects.create(name=AuctionList.objects.get(id=id).product_name,user=request.user)
+            
+
         
     #     # Check if the auction is already in the watchlist
-    #     if not Watchlist.objects.filter(user=request.user, products=auction).exists():
+    #     if not Watchlist.objects.filter(user=request.user, name=auction.product_name).exists():
+
     #         watchlist.products.add(auction)
     #         msg = f"{auction.product_name} added to watchlist"
     #     else:
     #         msg = f"{auction.product_name} is already in your watchlist"
 
-    return render(request, "auctions/listing.html", {'auction': auction })
+    return render(request, "auctions/listing.html", {'auction': auction ,"msg":msg})
 
 def watch_list(request):        
     return render(request, 'auctions/watch_list.html')
